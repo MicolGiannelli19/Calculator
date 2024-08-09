@@ -15,22 +15,38 @@ html, body {
     flex-direction: column;
     justify-content: space-around;
     align-content: center;
+    background-color: gray;
+    border-radius: 10px;
 }
 
 .numbers{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 3px;
+    color: white;
+    padding: 3%;
 }
 
 .equals {
     grid-column: span 3;
 }
 
+.clear {
+    grid-column: span 4;
+    background-color: orange;
+    border: none;
+    shadow: none; 
+}
+
 #display{
-    border: solid gray 1px;
+    border: solid white 1px;
+    display: flex;
     background-color: aquamarine;
     border-radius: 20px;
-    width: 100%;
+    width: 90%;
     height: 50px;
+    color: black;
+    padding: 5px;
+    align-items: center;
+    justify-content: start;
 }
