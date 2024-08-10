@@ -47,13 +47,23 @@ document.addEventListener('DOMContentLoaded', function(){
     document.querySelector('.clear').addEventListener('click', Clear)
 
     // Select all buttons with class "number" and "operator"
-    const buttons = document.querySelectorAll('.number', '.operator');
+    const NumberButtons = document.querySelectorAll('.number');
     
     // Loop through each button and add a click event listener
-    buttons.forEach(button => {
+    NumberButtons.forEach(button => {
 
         button.addEventListener('click', function() {
-            display.value += button.textContent; // Type in text
+            display.value += button.textContent;
+        });
+    });
+
+    const operatorButtons = document.querySelectorAll('.operator');
+
+    operatorButtons.forEach(button => {
+
+        button.addEventListener('click', function() {
+            console.log(button.textContent);
+            display.value += button.textContent;
         });
     });
 
