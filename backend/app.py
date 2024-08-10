@@ -1,49 +1,40 @@
-def add(*args): 
+# TODO: the actual defentions of the fucntionsh should be put in a seprate file
+def add_numbers(*args): 
     # return args
     if len(args) == 1: 
         return args[0]
     return sum(args)
-
-
-print(add(1))
-print(add(3))
-print(add(1, 3, 2))
-
 
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
 
+@app.route("/")
+def hello():
+    return "Hello, Micol!"
 
-@app.route('/calculate', methods=['POST'])
-def calculate():
-    data = request.get_json()  # Get the JSON data from the request
+@app.route("/add", methods = ['GET'])
+def add():
 
-    operation = data.get('operation')
-    num1 = data.get('num1')
-    num2 = data.get('num2')
+    numbers = request.args.get('numbers')
 
-    if not all([operation, num1, num2]):
-        return jsonify({'error': 'Invalid input, please provide operation, num1, and num2'}), 400
-
+    if not numbers:
+        return jsonify({'error': 'No numbers provided'}), 400
+        
     try:
-        num1 = float(num1)
-        num2 = float(num2)
+        # QUESTION: what would be best practice to check for the types here, in the add function, on client side or on all of them?
+        numbers = [float(num) for num in numbers.split(',')] # Converting comma seprated string to float
     except ValueError:
         return jsonify({'error': 'Invalid numbers provided'}), 400
 
-    if operation == 'add':
-        result = num1 + num2
-    elif operation == 'subtract':
-        result = num1 - num2
-    elif operation == 'multiply':
-        result = num1 * num2
-    elif operation == 'divide':
-        if num2 == 0:
-            return jsonify({'error': 'Division by zero is not allowed'}), 400
-        result = num1 / num2
-    else:
+    try:
+        result = add_numbers(*numbers)
+    except:
         return jsonify({'error': 'Invalid operation'}), 400
 
     return jsonify({'result': result}), 200
+
+if __name__ == '__main__':
+
+    app.run(debug=True)
