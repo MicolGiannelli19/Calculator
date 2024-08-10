@@ -59,4 +59,5 @@ html, body {
     align-items: center;
     justify-content: start;
     color: black;
+    font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
 }
