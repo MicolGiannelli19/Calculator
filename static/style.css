@@ -27,7 +27,7 @@ html, body {
     padding: 3%;
 }
 
-.equals {
+#equals{
     grid-column: span 3;
 }
 

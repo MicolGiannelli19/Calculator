@@ -1,13 +1,20 @@
-function sumbmit(operand, nums){
+function submit(){
+
+    let nums = display.value
     Clear()
+    
+    nums = reformatString(nums)
+    console.log(nums)
+
     console.log("running submit")
 
-    if (operand === 'add') {
+    if (true) { // can potentially change this to a conditional statment to check operand
 
         fetch(`/add?numbers=${nums}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+
                 if (data.result !== undefined) {
                     console.log('Success!')
                     display.value = data.result;
@@ -22,6 +29,13 @@ function sumbmit(operand, nums){
         }
     }
 
+function reformatString(x){
+    // to make this better you could remove opperands at the end of the string and stuff like that 
+    let newString = x.replaceAll(" ", "");
+    newString = newString.replaceAll("+", ",");
+    newString = newString.replaceAll("-", ",-");
+    return newString
+}
 // let operand = "should set this to some empty value"
 function Clear(){
     console.log('clearing display')
@@ -43,5 +57,15 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     });
 
+    equals.addEventListener('click', submit);
 
-})
+    document.addEventListener('keydown', function(event) {
+        // Check if the pressed key is Enter
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            console.log('Enter key pressed!');
+            submit()
+        }
+    });
+
+});
