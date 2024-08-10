@@ -5,14 +5,14 @@ def add_numbers(*args):
         return args[0]
     return sum(args)
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def hello():
-    return "Hello, Micol!"
+    return render_template('index.html') # Should change this to display index.html
 
 @app.route("/add", methods = ['GET'])
 def add():
