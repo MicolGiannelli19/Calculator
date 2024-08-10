@@ -79,3 +79,5 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
 });
+
+//  TODO: If the division or multiplication button are clicked, subit the form and wait for the answer you will need to write an async function for this 

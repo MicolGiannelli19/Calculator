@@ -26,4 +26,7 @@ function submit(operand, numbers) {
 ```
 
 
+TODO: add multiplication and division
+
+
 export default config;
